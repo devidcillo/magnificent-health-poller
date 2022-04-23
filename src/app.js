@@ -7,20 +7,23 @@ console.log('Reaching out to Magnificent API...')
 
 let aggregate = []
 
-const getMagnificent = () => {
+const constructLogFrom = ({data, status}) => {
     let log = {}
+    log.status = data
+    log.code = status
+    console.log(log.status)
+    aggregate.push(new Date().getTime(), log)
+}
+
+const getMagnificent = () => {
     axios.get('https://api.us-west-1.saucelabs.com/v1/magnificent/')
         .then(function (response) {
-            log.status = response.data
-            log.code = response.status
-            console.log(log.status)
+            constructLogFrom(response);
         })
         .catch(function (error) {
-            log.status = error.response.data
-            log.code = error.response.status
-            console.log(log.status)
+            constructLogFrom(error.response)
         })
-    aggregate.push(new Date().getTime(), log)
+    console.log(aggregate)
 }
 
 const printAggregate = () => {
