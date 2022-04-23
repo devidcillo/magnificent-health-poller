@@ -17,7 +17,7 @@ const constructLogFrom = ({data, status}) => {
 }
 
 const writeErrorTraceToFile = data => {
-    fs.writeFile('stackTrace.txt', JSON.stringify(data), err => {
+    fs.writeFile('stackTrace.json', JSON.stringify(data), err => {
         if (err)
             console.log('Failed to write stack trace to file')
     })
