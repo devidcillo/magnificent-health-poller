@@ -1,4 +1,5 @@
-const axios = require('axios');
+import axios from 'axios'
+import fs from 'fs'
 
 console.log('Is Magnificent API Healthy?\n')
 console.log('run `npm print-trace` if there\'s an unexpected error you\'d like to know more about')
