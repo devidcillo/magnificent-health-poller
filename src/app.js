@@ -1,8 +1,8 @@
 const axios = require('axios');
 
-console.log('Is Magnificent API Healthy?')
+console.log('Is Magnificent API Healthy?\n')
 console.log('run `npm print-trace` if there\'s an unexpected error you\'d like to know more about')
-console.log('"Unexpected error" = Anything other than `Magnificent!` being printed out to the console')
+console.log('"Unexpected error" = Anything other than `Magnificent!` being printed out to the console\n\n')
 console.log('Reaching out to Magnificent API...')
 
 let aggregate = []
