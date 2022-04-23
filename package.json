@@ -1,0 +1,15 @@
+{
+  "name": "magnificent",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/app.js",
+  "scripts": {
+    "start": "node ./src/app.js"
+  },
+  "dependencies": {
+    "axios": "^0.19.2"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
