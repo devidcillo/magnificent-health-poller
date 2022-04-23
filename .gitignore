@@ -1,5 +1,5 @@
 node_modules/
-stackTrace.txt
+stackTrace.json
 .DS_Store
 .idea/
 package-lock.json
