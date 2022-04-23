@@ -23,7 +23,6 @@ const getMagnificent = () => {
         .catch(function (error) {
             constructLogFrom(error.response)
         })
-    console.log(aggregate)
 }
 
 const printAggregate = () => {
