@@ -1,4 +1,4 @@
-.node_modules/
+node_modules/
 stackTrace.txt
 .DS_Store
 .idea/
