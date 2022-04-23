@@ -16,6 +16,13 @@ const constructLogFrom = ({data, status}) => {
     aggregate.push(new Date().getTime(), log)
 }
 
+const writeErrorTraceToFile = data => {
+    fs.writeFile('stackTrace.txt', JSON.stringify(data), err => {
+        if (err)
+            console.log('Failed to write stack trace to file')
+    })
+}
+
 const getMagnificent = () => {
     axios.get('https://api.us-west-1.saucelabs.com/v1/magnificent/')
         .then(function (response) {
@@ -23,6 +30,7 @@ const getMagnificent = () => {
         })
         .catch(function (error) {
             constructLogFrom(error.response)
+            writeErrorTraceToFile(error)
         })
 }
 
