@@ -13,7 +13,7 @@ const constructLogFrom = ({data, status}) => {
     log.status = data
     log.code = status
     console.log(log.status)
-    aggregate.push(new Date().getTime(), log)
+    aggregate.push(constructDateString(), log)
 }
 
 const constructDateString = () => {
