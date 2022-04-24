@@ -8,19 +8,23 @@ console.log('Reaching out to Magnificent API...')
 
 let aggregate = []
 
+const getMagnificent = () => {
+    axios.get('https://api.us-west-1.saucelabs.com/v1/magnificent/')
+        .then(function (response) {
+            constructLogFrom(response);
+        })
+        .catch(function (error) {
+            constructLogFrom(error.response)
+            writeErrorTraceToFile(error)
+        })
+}
+
 const constructLogFrom = ({data, status}) => {
     let log = {}
     log.status = data
     log.code = status
     console.log(log.status)
     aggregate.push(constructDateString(), log)
-}
-
-const constructDateString = () => {
-    const currentTimestamp = new Date()
-    const localeDateString = currentTimestamp.toLocaleDateString()
-    const localeTimeString = currentTimestamp.toLocaleTimeString()
-    return `${localeDateString} at ${localeTimeString}`
 }
 
 const writeErrorTraceToFile = data => {
@@ -32,15 +36,11 @@ const writeErrorTraceToFile = data => {
     })
 }
 
-const getMagnificent = () => {
-    axios.get('https://api.us-west-1.saucelabs.com/v1/magnificent/')
-        .then(function (response) {
-            constructLogFrom(response);
-        })
-        .catch(function (error) {
-            constructLogFrom(error.response)
-            writeErrorTraceToFile(error)
-        })
+const constructDateString = () => {
+    const currentTimestamp = new Date()
+    const localeDateString = currentTimestamp.toLocaleDateString()
+    const localeTimeString = currentTimestamp.toLocaleTimeString()
+    return `${localeDateString} at ${localeTimeString}`
 }
 
 const printAggregate = () => {
