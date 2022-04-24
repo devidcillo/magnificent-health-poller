@@ -6,7 +6,7 @@ console.log('run `npm print-trace` if there\'s an unexpected error you\'d like t
 console.log('"Unexpected error" = Anything other than `Magnificent!` being printed out to the console\n\n')
 console.log('Reaching out to Magnificent API...')
 
-let aggregate = []
+let aggregatedLogs = []
 
 const getMagnificent = () => {
     axios.get('https://api.us-west-1.saucelabs.com/v1/magnificent/')
@@ -24,7 +24,7 @@ const constructLogFrom = ({data, status}) => {
     log.status = data
     log.code = status
     console.log(log.status)
-    aggregate.push(constructDateString(), log)
+    aggregatedLogs.push(constructDateString(), log)
 }
 
 const writeErrorTraceToFile = data => {
@@ -43,11 +43,11 @@ const constructDateString = () => {
     return `${localeDateString} at ${localeTimeString}`
 }
 
-const printAggregate = () => {
-    let healthyPings = aggregate.filter(value => value.code === 200)
-    let healthPercentage = (healthyPings.length / (aggregate.length / 2)) * 100
+const calculateAndPrintHealthPercentage = () => {
+    const healthyPings = aggregatedLogs.filter(value => value.code === 200)
+    const healthPercentage = (healthyPings.length / (aggregatedLogs.length / 2)) * 100
     console.log(`Since starting this run, the Magnificent API has been healthy ${healthPercentage}% of the time`)
 }
 
 setInterval(getMagnificent, 2000);
-setInterval(printAggregate, 10000);
+setInterval(calculateAndPrintHealthPercentage, 10000);
