@@ -16,8 +16,17 @@ const constructLogFrom = ({data, status}) => {
     aggregate.push(new Date().getTime(), log)
 }
 
+const constructDateString = () => {
+    const currentTimestamp = new Date()
+    const localeDateString = currentTimestamp.toLocaleDateString()
+    const localeTimeString = currentTimestamp.toLocaleTimeString()
+    return `${localeDateString} at ${localeTimeString}`
+}
+
 const writeErrorTraceToFile = data => {
-    fs.appendFile('stackTrace.json', JSON.stringify(data), err => {
+    const legibleDateAndTime = constructDateString();
+    const editedErrorAsJson = `Error on ${legibleDateAndTime} => ${JSON.stringify(data)}\n`
+    fs.appendFile('stackTrace.json', editedErrorAsJson, err => {
         if (err)
             console.log('Failed to write stack trace to file')
     })
